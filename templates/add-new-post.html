@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block content %}
+<form action = "/add-new-post", method = "POST" >
+    <div>
+        <label>
+        Title for your new blog: <br/>
+            <input type = "text" name = "title"/>
+        </label>
+    </div>
+    <br/>
+    <div>
+    <label>
+        Entry: <br/>
+        <textarea name = "body" rows = "10" col="50"></textarea>
+        <!--{% for id in blog %}-->
+        <input type = "hidden"  name = "id" value ="{{id.id}}"/>
+        <!--{% endfor %}-->
+        <span>{{error}}</span>
+    </label>
+    </div>
+    <input type = "submit" value = "Add your entry"/>
+</form>
+{% endblock %}
