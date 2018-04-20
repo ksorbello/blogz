@@ -4,7 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 app = Flask(__name__)
 app.config['DEBUG'] = True
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://build-a-blog:LaunchCode@localhost:8889/build-a-blog'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://blogz:ThisMyPassword@localhost:8889/blogz'
 app.config['SQLALCHEMY_ECHO'] = True
 db = SQLAlchemy(app)
 
@@ -13,11 +13,19 @@ class Blog(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     title = db.Column(db.String(120))
     body = db.Column(db.String(550))
+    user_id = db.Column()
 
 
     def __init__(self, title, body):
         self.title = title
         self.body = body
+
+class User(db.Model):
+
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(100), unique = True)
+    password = db.Column(db.String(100))
+    blogs = db.Column(db.String(550))
 
 @app.route("/blog", methods = ["POST","GET"])
 def blog():
@@ -50,13 +58,21 @@ def blog_entry():
             db.session.commit()
             blog_id = str(new_entry.id)
             url = "/blog?id=" + blog_id
-            #title = Blog.query.filter_by(title=title).first()
-            #body = Blog.query.filter_by(body=body).first()
-             
-            # blog_one = Blog.query.filter_by(id=id).all()
-
-   
+           
             return redirect(url)
+@app.route("/signup", methods = ["POST"])
+def signup():
+
+
+
+@app.route("/login", methods = ["POST"])
+def login():
+
+
+@app.route("/index")
+def index():
+
+
         
         
 
