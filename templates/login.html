@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Log Into Your Account</h1>
+<p>If you do not have an account you can <a href = "/signup">register</a> here.</p>
+<form action= "/login" method = "post">
+    <table>
+        <tbody>
+            <tr>
+                <td>
+                    <label>Username: </label>
+                </td>
+                <td>
+                    <input type= "text" name ="username" value ="{{username}}" />
+                    <span>{{username_error}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Password:</label>
+                </td>
+                <td>
+                    <input type="password" name="password"/>
+                    <span>{{password_error}}</span>
+                </td>
+            <!-- </tr> 
+            <tr>
+                <td>
+                    <label>Verify Password:</label>
+                </td>
+                <td>
+                    <input type= "password" name ="password2"/>
+                    <span>{{password_error}}</span>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <label>Email (optional):</label>
+                </td>
+                <td>
+                    <input type= "text" name ="email" value="{{email}}"/>
+                    {% if email_error %}
+                    <span>{{email_error}}</span>
+                    {% endif %}
+                </td>
+            </tr> -->
+        </tbody>
+    </table>
+    <input type="submit" value="Login"/>
+</form>
+
+
+
+
+{% endblock %}
