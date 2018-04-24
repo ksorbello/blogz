@@ -43,22 +43,28 @@ def require_login():
 def blog():
     blog_title= Blog.query.all()
     print(blog_title)
+    blog = ""
     
     id = request.args.get("id")
-    user_id = request.args.get("owner")
+    print(id)
+    user_id = request.args.get("user")
+    print(user_id)
+    if user_id:
+        blog = Blog.query.filter_by(owner_id=user_id).all()
+        
+        return render_template("single_user.html",blog=blog)
     
     if id:
         blog = Blog.query.filter_by(id=id).all() 
         single_blog = blog[0]
         author = single_blog.owner
-    
+        user_id = str(request.args.get("user"))
         
-       
-        return render_template("single-post.html", blog=blog, author=author)#, users=users)#,author=author)
+        return render_template("single-post.html", blog=blog, author=author)
 
     
 
-    return render_template("blog.html", blog_title=blog_title)#, author=author)#, users=users)#,author=author)
+    return render_template("blog.html", blog_title=blog_title)
 
 @app.route("/add-new-post", methods = ["POST", "GET"])
 def blog_entry():
@@ -182,6 +188,10 @@ def logout():
 @app.route("/")
 def index():
     blog = User.query.all()
+    user_id = request.args.get("user")
+    print(user_id)
+    if user_id:
+        return render_template("single_user.html",blog=blog)
 
 
         
