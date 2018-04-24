@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{% block content %}
+<h1>Blog Users</h1>
+
+{% for user in blog %}
+<ul>
+    <li>{{user.username}}</li>
+</ul>
+{% endfor %}
 
 
 

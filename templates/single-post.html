@@ -4,6 +4,7 @@
 {% for id in blog %}
 <h1>{{id.title}}</h1>
 <p>{{id.body}}</p>
+<p>Written by:{{author.username}} </p>
 {% endfor %}
 
 {% endblock %}
