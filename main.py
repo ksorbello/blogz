@@ -46,9 +46,7 @@ def blog():
     blog = ""
     
     id = request.args.get("id")
-    print(id)
     user_id = request.args.get("user")
-    print(user_id)
     if user_id:
         blog = Blog.query.filter_by(owner_id=user_id).all()
         
@@ -84,9 +82,7 @@ def blog_entry():
              db.session.commit()
              blog_id = str(new_entry.id)
              user_id = str(new_entry.owner_id)
-             print(new_entry)
-             print("blog id=" + blog_id)
-             print("user id = " + user_id)
+             
              url = "/blog?id=" + blog_id 
            
              return redirect(url)
@@ -189,7 +185,7 @@ def logout():
 def index():
     blog = User.query.all()
     user_id = request.args.get("user")
-    print(user_id)
+    
     if user_id:
         return render_template("single_user.html",blog=blog)
 
